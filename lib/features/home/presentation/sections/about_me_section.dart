@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:my_portfolio/core/utils/responsive_helper.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({super.key});
@@ -66,9 +67,20 @@ class AboutMeSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Engineering Scalable Solutions with a Performance-First Mindset',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+        Row(
+          children: [
+            const Icon(Icons.person_search_outlined, size: 32),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                'Engineering Scalable Solutions with a Performance-First Mindset',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ),
+          ],
         ).animate().fadeIn(delay: 300.ms),
         const SizedBox(height: 24),
         Text(

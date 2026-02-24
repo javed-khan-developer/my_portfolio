@@ -19,7 +19,7 @@ class PerformanceSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(context),
+          _buildHeader(context,isMobile),
            SizedBox(height: isMobile?32: 64),
           _buildPerformanceContent(context, isMobile),
         ],
@@ -27,7 +27,7 @@ class PerformanceSection extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, bool isMobile) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -42,7 +42,7 @@ class PerformanceSection extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           'Optimizing for the Next Billion Users',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: isMobile?27: 32),
         ),
       ],
     );

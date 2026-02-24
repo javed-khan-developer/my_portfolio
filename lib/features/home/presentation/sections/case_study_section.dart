@@ -18,7 +18,7 @@ class CaseStudySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(context),
+          _buildHeader(context,isMobile),
            SizedBox(height: isMobile?32: 64),
           _buildCaseStudyItem(
             context,
@@ -55,7 +55,7 @@ class CaseStudySection extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, bool isMobile) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -70,7 +70,7 @@ class CaseStudySection extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           'How I Solve Complex Engineering Problems',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: isMobile?27: 32),
         ),
       ],
     );
@@ -132,34 +132,19 @@ class CaseStudySection extends StatelessWidget {
       ],
     );
 
-    final imageWidget = Container(
-      height: isMobile ? 50 : 100,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Theme.of(context).dividerColor.withOpacity(0.1),
-        ),
-      ),
-      child:  Center(
-        child: Icon(Icons.cases_outlined, size: isMobile ?30: 60, color: Colors.blueGrey),
-      ),
-    );
-
     if (isMobile) {
       return Column(
-        children: [imageWidget,  SizedBox(height:isMobile?16: 32), content],
+        children: [  SizedBox(height:isMobile?16: 32), content],
       );
     }
 
     return Row(
       children: [
-        if (reverse) Expanded(flex: 3, child: imageWidget),
+        if (reverse) Expanded(flex: 3, child: SizedBox()),
         if (reverse) const SizedBox(width: 64),
         Expanded(flex: 4, child: content),
         if (!reverse) const SizedBox(width: 64),
-        if (!reverse) Expanded(flex: 3, child: imageWidget),
+        if (!reverse) Expanded(flex: 3, child: SizedBox()),
       ],
     ).animate().fadeIn().slideY(begin: 0.1);
   }

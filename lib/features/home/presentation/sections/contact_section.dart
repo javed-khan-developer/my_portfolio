@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:my_portfolio/core/utils/responsive_helper.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -12,18 +12,21 @@ class ContactSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: isMobile?30: 60),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 24 : 100,
+        vertical: isMobile ? 30 : 60,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(context),
-           SizedBox(height: isMobile?32: 64),
+          _buildHeader(context, isMobile),
+          SizedBox(height: isMobile ? 32 : 64),
           if (isMobile)
             Column(
               children: [
-                _buildContactInfo(context,isMobile),
-                 SizedBox(height: isMobile?32: 64),
-                _buildContactForm(context,isMobile),
+                _buildContactInfo(context, isMobile),
+                SizedBox(height: isMobile ? 32 : 64),
+                // _buildContactForm(context, isMobile),
               ],
             )
           else
@@ -32,7 +35,7 @@ class ContactSection extends StatelessWidget {
               children: [
                 Expanded(flex: 2, child: _buildContactInfo(context)),
                 const SizedBox(width: 100),
-                Expanded(flex: 3, child: _buildContactForm(context)),
+                // Expanded(flex: 3, child: _buildContactForm(context)),
               ],
             ),
         ],
@@ -40,7 +43,7 @@ class ContactSection extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, bool isMobile) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -53,9 +56,20 @@ class ContactSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Text(
-          'Let\'s Build Something Great Together',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+        Row(
+          children: [
+            const Icon(Icons.connect_without_contact_outlined, size: 32),
+            const SizedBox(width: 16),
+            Text(
+              !isMobile
+                  ? 'Let\'s Build Something Great Together'
+                  : 'Let\'s Build Something\nGreat Together',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -69,95 +83,69 @@ class ContactSection extends StatelessWidget {
           'I\'m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.',
           style: TextStyle(fontSize: 18, height: 1.6, color: Colors.blueGrey),
         ),
-         SizedBox(height: isMobile?24: 48),
-        _buildInfoItem(context, Icons.email_outlined, 'Email', 'jkhan.kj862@gmail.com'),
-        _buildInfoItem(context, Icons.phone_outlined, 'Phone', '8948426729'),
-        _buildInfoItem(context, Icons.location_on_outlined, 'Location', 'Ghatkopar West, Mumbai, India'),
-        SizedBox(height: isMobile?24: 48),
-        Row(
-          children: [
-            _buildSocialIcon(FontAwesomeIcons.linkedinIn, () {}),
-            _buildSocialIcon(FontAwesomeIcons.github, () {}),
-            _buildSocialIcon(FontAwesomeIcons.whatsapp, () {}),
-          ],
+        SizedBox(height: isMobile ? 24 : 48),
+        _buildInfoItem(
+          context,
+          Icons.email_outlined,
+          'Email',
+          'jkhan.kj862@gmail.com',
+          onTap: () => launchUrl(Uri.parse('mailto:jkhan.kj862@gmail.com')),
+        ),
+        _buildInfoItem(
+          context,
+          Icons.phone_outlined,
+          'Phone',
+          '8948426729',
+          onTap: () => launchUrl(Uri.parse('tel:8948426729')),
+        ),
+        _buildInfoItem(
+          context,
+          Icons.location_on_outlined,
+          'Location',
+          'Ghatkopar West, Mumbai, India',
+          onTap: () => launchUrl(
+            Uri.parse(
+              'https://www.google.com/maps/search/?api=1&query=Ghatkopar+West,+Mumbai,+India',
+            ),
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildInfoItem(BuildContext context, IconData icon, String label, String value) {
+  Widget _buildInfoItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    String value, {
+    VoidCallback? onTap,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 32),
-      child: Row(
-        children: [
-          Icon(icon, color: Theme.of(context).primaryColor, size: 28),
-          const SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-              Text(value, style: const TextStyle(color: Colors.blueGrey)),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSocialIcon(IconData icon, VoidCallback onTap) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 20),
       child: InkWell(
         onTap: onTap,
-        child: Icon(icon, size: 24, color: Colors.blueGrey),
-      ),
-    ).animate().fadeIn().scale();
-  }
-
-  Widget _buildContactForm(BuildContext context, [bool isMobile = false]) {
-    return Container(
-      padding:  EdgeInsets.all(isMobile?20:40),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 30,
-            offset: const Offset(0, 10),
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+          child: Row(
+            children: [
+              Icon(icon, color: Theme.of(context).primaryColor, size: 28),
+              const SizedBox(width: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(value, style: const TextStyle(color: Colors.blueGrey)),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          _buildTextField('Full Name', Icons.person_outline),
-          const SizedBox(height: 20),
-          _buildTextField('Email Address', Icons.email_outlined),
-          const SizedBox(height: 20),
-          _buildTextField('Message', Icons.message_outlined, maxLines: 5),
-           SizedBox(height: isMobile?30: 40),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Text('Send Message'),
-            ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn().slideX(begin: 0.1);
-  }
-
-  Widget _buildTextField(String label, IconData icon, {int maxLines = 1}) {
-    return TextFormField(
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(icon, size: 20),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.blueGrey, width: 0.1),
         ),
       ),
     );

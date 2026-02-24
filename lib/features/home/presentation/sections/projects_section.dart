@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../data/models/project_model.dart';
 import '../../../projects/presentation/widgets/project_card.dart';
+import 'package:my_portfolio/core/utils/responsive_helper.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
@@ -228,9 +229,18 @@ class ProjectsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Text(
-          'Selected Production Apps',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+        Row(
+          children: [
+            const Icon(Icons.rocket_launch_outlined, size: 32),
+            const SizedBox(width: 16),
+            Text(
+              'Selected Production Apps',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ],
         ),
       ],
     );

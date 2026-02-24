@@ -16,7 +16,7 @@ class FailureHandlingSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(context),
+          _buildHeader(context,isMobile),
            SizedBox(height: isMobile?32: 64),
           _buildFailureGrid(context, isMobile),
         ],
@@ -24,7 +24,7 @@ class FailureHandlingSection extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, bool isMobile) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,8 +38,8 @@ class FailureHandlingSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          'Building Resilient User Experiences',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+          'Building Great User Experiences',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: isMobile?27: 32),
         ),
       ],
     );
@@ -49,10 +49,12 @@ class FailureHandlingSection extends StatelessWidget {
     final strategies = [
       {'title': 'Retry Mechanism', 'desc': 'Exponential backoff for transient network failures.'},
       {'title': 'Offline Fallback', 'desc': 'Background sync and data persistence (Hive/SQLite).'},
-      {'title': 'Error Boundaries', 'desc': 'Graceful UI recovery from unexpected runtime exceptions.'},
       {'title': 'Network-Aware UI', 'desc': 'Real-time connectivity monitoring and adaptation.'},
+      {'title': 'Request Timeout Handling', 'desc': 'Abort long-running API calls to prevent UI blocking.'},
+      {'title': 'Token Refresh Strategy', 'desc': 'Auto refresh expired authentication tokens.'},
+      {'title': 'Pagination Handling', 'desc': 'Efficient lazy loading for large datasets.'},
+      {'title': 'Location Validation Layer', 'desc': 'Geofence-based attendance verification.'},
     ];
-
     return Wrap(
       spacing: 32,
       runSpacing: 32,

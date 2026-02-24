@@ -15,7 +15,7 @@ class ArchitectureSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(context),
+          _buildHeader(context,isMobile),
            SizedBox(height: isMobile?32: 64),
           _buildArchitectureDiagram(context, isMobile),
         ],
@@ -23,7 +23,7 @@ class ArchitectureSection extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, bool isMobile) {
     return Center(
       child: Column(
         children: [
@@ -38,7 +38,7 @@ class ArchitectureSection extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             'Modular & Scalable Design',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: isMobile?27: 32),
           ),
         ],
       ),

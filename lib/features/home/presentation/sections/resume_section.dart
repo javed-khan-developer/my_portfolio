@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:my_portfolio/core/utils/app_assets.dart';
+import 'package:my_portfolio/core/utils/responsive_helper.dart';
+import 'package:my_portfolio/core/services/file_service.dart';
 
 class ResumeSection extends StatelessWidget {
   const ResumeSection({super.key});
@@ -11,12 +14,15 @@ class ResumeSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: isMobile?30: 60),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 24 : 100,
+        vertical: isMobile ? 30 : 60,
+      ),
       color: Theme.of(context).primaryColor.withOpacity(0.02),
       child: Column(
         children: [
           _buildHeader(context),
-           SizedBox(height: isMobile?32: 64),
+          SizedBox(height: isMobile ? 32 : 64),
           _buildResumeCard(context, isMobile),
         ],
       ),
@@ -38,7 +44,10 @@ class ResumeSection extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           'Professional Credentials',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 32),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     );
@@ -47,11 +56,13 @@ class ResumeSection extends StatelessWidget {
   Widget _buildResumeCard(BuildContext context, bool isMobile) {
     return Container(
       width: isMobile ? double.infinity : 600,
-      padding:  EdgeInsets.all(isMobile?16:40),
+      padding: EdgeInsets.all(isMobile ? 16 : 40),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(32),
-        border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.1)),
+        border: Border.all(
+          color: Theme.of(context).primaryColor.withOpacity(0.1),
+        ),
       ),
       child: Column(
         children: [
@@ -62,30 +73,32 @@ class ResumeSection extends StatelessWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
-          const Text(
+          Text(
             'Updated February 2026',
-            style: TextStyle(color: Colors.blueGrey),
+            style: TextStyle(
+              color: Colors.blueGrey,
+              fontSize: ResponsiveHelper.getResponsiveFontSize(context, 16),
+            ),
           ),
-           SizedBox(height: isMobile?24: 48),
+          SizedBox(height: isMobile ? 24 : 48),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () => FileService.openResume(AppAssets.resume),
                 icon: const Icon(Icons.remove_red_eye),
                 label: const Text('View'),
               ),
 
-               SizedBox(width: isMobile?30: 60),
+              SizedBox(width: isMobile ? 30 : 60),
               OutlinedButton.icon(
-                onPressed: () {},
+                onPressed: () => FileService.downloadResume(AppAssets.resume),
                 icon: const Icon(Icons.download),
                 label: const Text('Download'),
               ),
-
             ],
           ),
-          SizedBox(height: isMobile?12: 24),
+          SizedBox(height: isMobile ? 12 : 24),
         ],
       ),
     ).animate().fadeIn().scale();

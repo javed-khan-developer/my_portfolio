@@ -6,7 +6,6 @@ import 'sections/about_me_section.dart';
 import 'sections/tech_stack_section.dart';
 import 'sections/projects_section.dart';
 import 'sections/case_study_section.dart';
-import 'sections/production_impact_section.dart';
 import 'sections/security_section.dart';
 import 'sections/performance_section.dart';
 import 'sections/architecture_section.dart';
@@ -14,6 +13,7 @@ import 'sections/failure_handling_section.dart';
 import 'sections/resume_section.dart';
 import 'sections/contact_section.dart';
 import '../../../core/widgets/app_footer.dart';
+import '../../../core/utils/app_assets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
-  
+
   // Keys for scrolling to sections
   final Map<String, GlobalKey> _sectionKeys = {
     'Home': GlobalKey(),
@@ -59,7 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: _scrollController,
           child: Column(
             children: [
-              LandingSection(key: _sectionKeys['Home']),
+              LandingSection(
+                key: _sectionKeys['Home'],
+                onViewProjects: () => _scrollToSection('Projects'),
+              ),
               AboutMeSection(key: _sectionKeys['About']),
               TechStackSection(key: _sectionKeys['Tech']),
               ProjectsSection(key: _sectionKeys['Projects']),
@@ -85,19 +88,36 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           DrawerHeader(
             child: Center(
-              child: Text(
-                'KANISHKA',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 36,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundImage: AssetImage(AppAssets.profileImage),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Mohammad Javed Khan',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          ..._sectionKeys.keys.map((section) => ListTile(
-                title: Text(section),
-                onTap: () {
-                  Navigator.pop(context);
-                  _scrollToSection(section);
-                },
-              )),
+          ..._sectionKeys.keys.map(
+            (section) => ListTile(
+              title: Text(section),
+              onTap: () {
+                Navigator.pop(context);
+                _scrollToSection(section);
+              },
+            ),
+          ),
         ],
       ),
     );

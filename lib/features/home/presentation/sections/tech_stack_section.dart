@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_portfolio/core/utils/responsive_helper.dart';
 
 class TechStackSection extends StatelessWidget {
   const TechStackSection({super.key});
@@ -41,11 +42,16 @@ class TechStackSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
+          const Icon(Icons.code_off_outlined, size: 32),
+          const SizedBox(height: 16),
           Text(
             'Technologies I Work With',
             style: Theme.of(
               context,
-            ).textTheme.titleLarge?.copyWith(fontSize: 32),
+            ).textTheme.titleLarge?.copyWith(
+                  fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ],
       ),
