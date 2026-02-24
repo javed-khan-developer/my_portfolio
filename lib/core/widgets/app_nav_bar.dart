@@ -15,7 +15,9 @@ class AppNavBar extends StatelessWidget implements PreferredSizeWidget {
     final isMobile = MediaQuery.of(context).size.width < 800;
 
     return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
+      backgroundColor: Theme.of(
+        context,
+      ).scaffoldBackgroundColor.withOpacity(0.8),
       elevation: 0,
       centerTitle: false,
       leading: isMobile ? null : null, // AppBar handles drawer automatically
@@ -26,28 +28,43 @@ class AppNavBar extends StatelessWidget implements PreferredSizeWidget {
           letterSpacing: 2,
         ),
       ),
-      actions: isMobile 
-        ? [
-            IconButton(
-              icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-              onPressed: () => themeProvider.toggleTheme(),
-            ),
-            const SizedBox(width: 16),
-          ]
-        : [
-            _NavBarItem(label: 'Home', onTap: () => onSectionSelect('Home')),
-            _NavBarItem(label: 'About', onTap: () => onSectionSelect('About')),
-            _NavBarItem(label: 'Projects', onTap: () => onSectionSelect('Projects')),
-            _NavBarItem(label: 'Case Studies', onTap: () => onSectionSelect('Case Studies')),
-            _NavBarItem(label: 'Security', onTap: () => onSectionSelect('Security')),
-            _NavBarItem(label: 'Contact', onTap: () => onSectionSelect('Contact')),
-            const SizedBox(width: 8),
-            IconButton(
-              icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-              onPressed: () => themeProvider.toggleTheme(),
-            ),
-            const SizedBox(width: 16),
-          ],
+      actions: isMobile
+          ? [
+              IconButton(
+                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                onPressed: () => themeProvider.toggleTheme(),
+              ),
+              const SizedBox(width: 16),
+            ]
+          : [
+              _NavBarItem(label: 'Home', onTap: () => onSectionSelect('Home')),
+              _NavBarItem(
+                label: 'About',
+                onTap: () => onSectionSelect('About'),
+              ),
+              _NavBarItem(
+                label: 'Projects',
+                onTap: () => onSectionSelect('Projects'),
+              ),
+              _NavBarItem(
+                label: 'Case Studies',
+                onTap: () => onSectionSelect('Case Studies'),
+              ),
+              _NavBarItem(
+                label: 'Security',
+                onTap: () => onSectionSelect('Security'),
+              ),
+              _NavBarItem(
+                label: 'Contact',
+                onTap: () => onSectionSelect('Contact'),
+              ),
+              const SizedBox(width: 8),
+              IconButton(
+                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                onPressed: () => themeProvider.toggleTheme(),
+              ),
+              const SizedBox(width: 16),
+            ],
     );
   }
 

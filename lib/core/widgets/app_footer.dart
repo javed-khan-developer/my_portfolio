@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../core/utils/build_whatsapp_url.dart';
 
 class AppFooter extends StatelessWidget {
   const AppFooter({super.key});
@@ -99,18 +100,15 @@ class AppFooter extends StatelessWidget {
           children: [
             _buildSocialIcon(
               FontAwesomeIcons.linkedin,
-              'https://linkedin.com/in/mjaved-khan',
+              'https://www.linkedin.com/in/mohammad-javed-khan-89b554245?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
             ),
             const SizedBox(width: 20),
             _buildSocialIcon(
               FontAwesomeIcons.github,
-              'https://github.com/javedkhan-dev',
+              'https://github.com/javed-khan-developer',
             ),
             const SizedBox(width: 20),
-            _buildSocialIcon(
-              FontAwesomeIcons.medium,
-              'https://medium.com/@mjaved.khan',
-            ),
+            _buildSocialIcon(FontAwesomeIcons.whatsapp, buildWhatsappUrl()),
           ],
         ),
       ],
@@ -119,7 +117,12 @@ class AppFooter extends StatelessWidget {
 
   Widget _buildSocialIcon(IconData icon, String url) {
     return InkWell(
-      onTap: () => launchUrl(Uri.parse(url)),
+      onTap: () async {
+        final uri = Uri.parse(url);
+        if (await canLaunchUrl(uri)) {
+          await launchUrl(uri, mode: LaunchMode.platformDefault);
+        }
+      },
       borderRadius: BorderRadius.circular(8),
       child: Icon(icon, color: Colors.blueGrey, size: 24),
     );
@@ -127,24 +130,14 @@ class AppFooter extends StatelessWidget {
 
   Widget _buildBottomBar(BuildContext context, int year) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          '© $year Javed Khan. All rights reserved.',
-          style: const TextStyle(color: Colors.blueGrey, fontSize: 13),
-        ),
-        const Row(
-          children: [
-            Text(
-              'Built with ',
-              style: TextStyle(color: Colors.blueGrey, fontSize: 13),
-            ),
-            Icon(Icons.favorite, color: Colors.red, size: 14),
-            Text(
-              ' using Flutter',
-              style: TextStyle(color: Colors.blueGrey, fontSize: 13),
-            ),
-          ],
+        Center(
+          child: Text(
+            '© $year Javed AppWorks. All rights reserved.',
+            style: const TextStyle(color: Colors.blueGrey, fontSize: 13),
+          ),
         ),
       ],
     );
