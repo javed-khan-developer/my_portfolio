@@ -12,18 +12,18 @@ class ContactSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: 60),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: isMobile?30: 60),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-          const SizedBox(height: 64),
+           SizedBox(height: isMobile?32: 64),
           if (isMobile)
             Column(
               children: [
-                _buildContactInfo(context),
-                const SizedBox(height: 64),
-                _buildContactForm(context),
+                _buildContactInfo(context,isMobile),
+                 SizedBox(height: isMobile?32: 64),
+                _buildContactForm(context,isMobile),
               ],
             )
           else
@@ -61,7 +61,7 @@ class ContactSection extends StatelessWidget {
     );
   }
 
-  Widget _buildContactInfo(BuildContext context) {
+  Widget _buildContactInfo(BuildContext context, [bool isMobile = false]) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -69,17 +69,16 @@ class ContactSection extends StatelessWidget {
           'I\'m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.',
           style: TextStyle(fontSize: 18, height: 1.6, color: Colors.blueGrey),
         ),
-        const SizedBox(height: 48),
-        _buildInfoItem(context, Icons.email_outlined, 'Email', 'kanishka@software.com'),
-        _buildInfoItem(context, Icons.phone_outlined, 'Phone', '+91 99999 00000'),
-        _buildInfoItem(context, Icons.location_on_outlined, 'Location', 'Remote / Hybrid'),
-        const SizedBox(height: 48),
+         SizedBox(height: isMobile?24: 48),
+        _buildInfoItem(context, Icons.email_outlined, 'Email', 'jkhan.kj862@gmail.com'),
+        _buildInfoItem(context, Icons.phone_outlined, 'Phone', '8948426729'),
+        _buildInfoItem(context, Icons.location_on_outlined, 'Location', 'Ghatkopar West, Mumbai, India'),
+        SizedBox(height: isMobile?24: 48),
         Row(
           children: [
             _buildSocialIcon(FontAwesomeIcons.linkedinIn, () {}),
             _buildSocialIcon(FontAwesomeIcons.github, () {}),
-            _buildSocialIcon(FontAwesomeIcons.twitter, () {}),
-            _buildSocialIcon(FontAwesomeIcons.medium, () {}),
+            _buildSocialIcon(FontAwesomeIcons.whatsapp, () {}),
           ],
         ),
       ],
@@ -115,9 +114,9 @@ class ContactSection extends StatelessWidget {
     ).animate().fadeIn().scale();
   }
 
-  Widget _buildContactForm(BuildContext context) {
+  Widget _buildContactForm(BuildContext context, [bool isMobile = false]) {
     return Container(
-      padding: const EdgeInsets.all(40),
+      padding:  EdgeInsets.all(isMobile?20:40),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(32),
@@ -136,7 +135,7 @@ class ContactSection extends StatelessWidget {
           _buildTextField('Email Address', Icons.email_outlined),
           const SizedBox(height: 20),
           _buildTextField('Message', Icons.message_outlined, maxLines: 5),
-          const SizedBox(height: 40),
+           SizedBox(height: isMobile?30: 40),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(

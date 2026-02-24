@@ -11,9 +11,9 @@ class LandingSection extends StatelessWidget {
     final isMobile = size.width < 800;
 
     return Container(
-      constraints: BoxConstraints(minHeight: size.height * 0.65),
+      constraints: BoxConstraints(minHeight: size.height * (isMobile? 0.1: 0.8)),
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: 40),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: isMobile?16: 40),
       child: Stack(
         children: [
           // Background Elements (Subtle gradients or shapes)
@@ -41,27 +41,29 @@ class LandingSection extends StatelessWidget {
                     Text(
                       '👋 HELLO, I\'M',
                       style: GoogleFonts.inter(
-                        fontSize: 18,
+                        fontSize: isMobile?17: 18,
                         fontWeight: FontWeight.w600,
                         color: Theme.of(context).primaryColor,
                         letterSpacing: 3,
                       ),
                     ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.2),
-                    const SizedBox(height: 16),
+                     SizedBox(height: isMobile?12: 16),
                     Text(
                       'Mohammad Javed Khan\ Flutter Developer',
-                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                      style: isMobile? Theme.of(context).textTheme.displaySmall?.copyWith(
+                        height: 1.1,
+                      ): Theme.of(context).textTheme.displayLarge?.copyWith(
                         height: 1.1,
                       ),
                     ).animate().fadeIn(delay: 400.ms).slideX(begin: -0.1),
-                    const SizedBox(height: 24),
+                     SizedBox(height: isMobile?16: 24),
                     Text(
                       'Specializing in designing, building, and optimizing scalable production-grade android and iOS applications with Flutter.',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontSize: 20,
+                        fontSize: isMobile?18: 20,
                       ),
                     ).animate().fadeIn(delay: 600.ms).slideX(begin: -0.1),
-                    const SizedBox(height: 48),
+                    SizedBox(height: isMobile?24: 48),
                     Wrap(
                       spacing: 20,
                       runSpacing: 20,

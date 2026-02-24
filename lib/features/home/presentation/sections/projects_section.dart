@@ -128,45 +128,6 @@ class ProjectsSection extends StatelessWidget {
         playStoreLink: 'YOUR_PLAYSTORE_LINK',
       ),
       Project(
-        name: 'Cloud Note App',
-        description:
-            'A real-time cloud-based note management application with offline-first support and background synchronization.',
-        features: [
-          'Create & Manage Notes',
-          'Cloud Sync',
-          'Offline First Storage',
-          'Search & Categorization',
-        ],
-        technologies: [
-          'Flutter',
-          'Cloud Firestore',
-          'Getx',
-          'Firebase',
-          'Local Storage',
-        ],
-
-        role: 'Flutter Developer',
-        challenges:
-            'Maintaining consistency between local cached data and remote cloud storage.',
-        solutions:
-            'Implemented background sync strategy with conflict resolution for offline-first data handling.',
-        githubLink: 'YOUR_GITHUB_LINK',
-      ),
-      Project(
-        name: 'Inventory Management App',
-        description:
-            'A mobile inventory tracking solution for managing stock levels, product movement, and reporting.',
-        features: ['Stock Management', 'Product Tracking', 'Inventory Reports'],
-        technologies: ['Flutter', 'REST API', 'Firebase'],
-
-        role: 'Flutter Developer',
-        challenges:
-            'Handling large inventory datasets without UI performance degradation.',
-        solutions:
-            'Optimized image using cache image and implemented pagination for efficient data loading.',
-        githubLink: 'YOUR_GITHUB_LINK',
-      ),
-      Project(
         name: 'Society Management System',
         description:
             'A residential society management application for managing residents, building/flats, maintenance billing, online payments.',
@@ -191,19 +152,58 @@ class ProjectsSection extends StatelessWidget {
             'Implemented role-based access and real-time notification system for seamless communication.',
         playStoreLink: 'YOUR_PLAYSTORE_LINK',
       ),
+      Project(
+        name: 'Inventory Management System',
+        description:
+        'A mobile inventory tracking solution for managing stock levels, product movement, and reporting.',
+        features: ['Stock Management', 'Product Tracking', 'Inventory Reports'],
+        technologies: ['Flutter', 'REST API', 'Firebase'],
+
+        role: 'Flutter Developer',
+        challenges:
+        'Handling large inventory datasets without UI performance degradation.',
+        solutions:
+        'Optimized image using cache image and implemented pagination for efficient data loading.',
+        githubLink: 'YOUR_GITHUB_LINK',
+      ),
+      Project(
+        name: 'Cloud Note App',
+        description:
+        'A real-time cloud-based note management application with offline-first support and background synchronization.',
+        features: [
+          'Create & Manage Notes',
+          'Cloud Sync',
+          'Offline First Storage',
+          'Search & Categorization',
+        ],
+        technologies: [
+          'Flutter',
+          'Cloud Firestore',
+          'Getx',
+          'Firebase',
+          'Local Storage',
+        ],
+
+        role: 'Flutter Developer',
+        challenges:
+        'Maintaining consistency between local cached data and remote cloud storage.',
+        solutions:
+        'Implemented background sync strategy with conflict resolution for offline-first data handling.',
+        githubLink: 'YOUR_GITHUB_LINK',
+      ),
     ];
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 100,
-        vertical: 60,
+        vertical: isMobile?30: 60,
       ),
       color: Theme.of(context).primaryColor.withOpacity(0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-          const SizedBox(height: 64),
+           SizedBox(height: isMobile?32:64),
           Wrap(
             spacing: 32,
             runSpacing: 40,

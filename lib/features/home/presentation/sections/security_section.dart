@@ -13,13 +13,13 @@ class SecuritySection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 100,
-        vertical: 60,
+        vertical: isMobile?30: 60,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-          const SizedBox(height: 64),
+           SizedBox(height:isMobile?32: 64),
           _buildSecurityGrid(context, isMobile),
         ],
       ),

@@ -14,13 +14,13 @@ class TechStackSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 100,
-        vertical: 60,
+        vertical: isMobile?30: 60,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-          const SizedBox(height: 64),
+           SizedBox(height: isMobile?32: 64),
           _buildTechGrid(context, isMobile),
         ],
       ),
@@ -30,6 +30,7 @@ class TechStackSection extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return Center(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'TECH STACK',
@@ -94,13 +95,13 @@ class TechStackSection extends StatelessWidget {
     ];
 
     return Wrap(
-      spacing: 32,
-      runSpacing: 32,
+      spacing:isMobile?16: 32,
+      runSpacing:isMobile?16: 32,
       alignment: WrapAlignment.center,
       children: techs
           .asMap()
           .entries
-          .map((entry) => _buildTechCard(context, entry.value, entry.key))
+          .map((entry) => _buildTechCard(context, entry.value, entry.key,isMobile))
           .toList(),
     );
   }
@@ -109,10 +110,12 @@ class TechStackSection extends StatelessWidget {
     BuildContext context,
     Map<String, dynamic> tech,
     int index,
+    bool isMobile,
   ) {
     return Container(
-      width: 160,
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      width: isMobile?135:  160,
+      height: isMobile?135:  200,
+      padding:  EdgeInsets.symmetric(vertical: isMobile?12: 24, horizontal: isMobile?12: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),

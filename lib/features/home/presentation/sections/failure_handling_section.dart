@@ -11,13 +11,13 @@ class FailureHandlingSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: 60),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: isMobile?30: 60),
       color: Theme.of(context).primaryColor.withOpacity(0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-          const SizedBox(height: 64),
+           SizedBox(height: isMobile?32: 64),
           _buildFailureGrid(context, isMobile),
         ],
       ),

@@ -11,18 +11,18 @@ class AboutMeSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: 60),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: isMobile?30: 60),
       color: Theme.of(context).primaryColor.withOpacity(0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-          const SizedBox(height: 48),
+           SizedBox(height: isMobile?24: 48),
           if (isMobile)
             Column(
               children: [
                 _buildSummary(context),
-                const SizedBox(height: 48),
+                 SizedBox(height: isMobile?24: 48),
                 _buildExperienceGrid(context),
               ],
             )

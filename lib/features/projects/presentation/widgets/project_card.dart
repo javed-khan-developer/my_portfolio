@@ -66,16 +66,13 @@ class _ProjectCardState extends State<ProjectCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+
                       Text(
                         widget.project.name,
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                       ),
-                      _buildTechBadge(widget.project.technologies.first),
-                    ],
-                  ),
+                      // _buildTechBadge(widget.project.technologies.first),
+
                   const SizedBox(height: 12),
                   Text(
                     widget.project.description,
