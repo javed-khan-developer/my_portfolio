@@ -109,6 +109,12 @@ class _ProjectCardState extends State<ProjectCard> {
                           'Play Store',
                           widget.project.playStoreLink!,
                         ),
+                      if (widget.project.appStoreLink != null)
+                        _buildLinkButton(
+                          Icons.apple,
+                          'App Store',
+                          widget.project.appStoreLink!,
+                        ),
                       const Spacer(),
                       TextButton(
                         onPressed: () {}, // Navigate to detail

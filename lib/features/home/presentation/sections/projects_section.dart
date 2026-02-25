@@ -36,7 +36,9 @@ class ProjectsSection extends StatelessWidget {
             'Ensuring accurate attendance sync in low-network environments & Prevent Proxy Attendance .',
         solutions:
             'Implemented offline-data caching & blink eye detection/fake GPS detection for proxy prevention.',
-        playStoreLink: 'YOUR_PLAYSTORE_LINK',
+        playStoreLink:
+            'https://play.google.com/store/apps/details?id=com.kspl.ourattendance',
+        appStoreLink: '',
       ),
 
       Project(
@@ -61,7 +63,9 @@ class ProjectsSection extends StatelessWidget {
             'Handling hardware integration with thermal printers and scanners on kiosk devices',
         solutions:
             'Built a modular hardware abstraction layer using platform channels for stable device communication.',
-        githubLink: 'YOUR_GITHUB_LINK',
+        playStoreLink:
+            'https://play.google.com/store/apps/details?id=com.kspl.vmsKiosk1',
+        appStoreLink: 'https://apps.apple.com/us/app/entryiq/id6476648198',
       ),
 
       Project(
@@ -99,7 +103,10 @@ class ProjectsSection extends StatelessWidget {
             'Handling high-volume push notifications and deep link routing.',
         solutions:
             'Integrated FCM with proper background handlers and implemented dynamic route parsing.',
-        githubLink: 'YOUR_GITHUB_LINK',
+        playStoreLink:
+            'https://play.google.com/store/apps/details?id=com.kspl.mark_app',
+        appStoreLink: '',
+
       ),
 
       Project(
@@ -126,7 +133,9 @@ class ProjectsSection extends StatelessWidget {
             'Ensuring uninterrupted background streaming across Android OEM devices.',
         solutions:
             'Optimized foreground service handling and implemented battery optimization handling logic.',
-        playStoreLink: 'YOUR_PLAYSTORE_LINK',
+        playStoreLink:
+            'https://play.google.com/store/apps/details?id=com.maqjaconsultancy.mymosque',
+        appStoreLink: 'https://apps.apple.com/us/app/my-nearby-masjid/id6758878080',
       ),
       Project(
         name: 'Society Management System',
@@ -152,30 +161,29 @@ class ProjectsSection extends StatelessWidget {
         solutions:
             'Implemented role-based access and real-time notification system for seamless communication.',
         playStoreLink: 'YOUR_PLAYSTORE_LINK',
+        appStoreLink: '',
       ),
       Project(
         name: 'Inventory Management System',
         description:
-        'A mobile inventory tracking solution for managing stock levels, product movement, and reporting.',
+            'A mobile inventory tracking solution for managing stock levels, product movement, and reporting.',
         features: ['Stock Management', 'Product Tracking', 'Inventory Reports'],
         technologies: ['Flutter', 'REST API', 'Firebase'],
 
         role: 'Flutter Developer',
         challenges:
-        'Handling large inventory datasets without UI performance degradation.',
+            'Handling large inventory datasets without UI performance degradation.',
         solutions:
-        'Optimized image using cache image and implemented pagination for efficient data loading.',
-        githubLink: 'YOUR_GITHUB_LINK',
+            'Optimized image using cache image and implemented pagination for efficient data loading.',
+        githubLink: '',
       ),
       Project(
-        name: 'Cloud Note App',
-        description:
-        'A real-time cloud-based note management application with offline-first support and background synchronization.',
+        name: 'Notes App',
+        description: 'A note management application with offline support.',
         features: [
           'Create & Manage Notes',
-          'Cloud Sync',
-          'Offline First Storage',
-          'Search & Categorization',
+          'Share Notes',
+          'Language Translation',
         ],
         technologies: [
           'Flutter',
@@ -187,24 +195,24 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-        'Maintaining consistency between local cached data and remote cloud storage.',
+            'Maintaining consistency between local cached data and language translation.',
         solutions:
-        'Implemented background sync strategy with conflict resolution for offline-first data handling.',
-        githubLink: 'YOUR_GITHUB_LINK',
+            'Implemented background sync strategy with conflict resolution for offline data handling and language translation.',
+        githubLink: 'https://github.com/javed-khan-developer/cloud_note',
       ),
     ];
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 100,
-        vertical: isMobile?30: 60,
+        vertical: isMobile ? 30 : 60,
       ),
       color: Theme.of(context).primaryColor.withOpacity(0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-           SizedBox(height: isMobile?32:64),
+          SizedBox(height: isMobile ? 32 : 64),
           Wrap(
             spacing: 32,
             runSpacing: 40,
@@ -234,11 +242,11 @@ class ProjectsSection extends StatelessWidget {
             const Icon(Icons.rocket_launch_outlined, size: 32),
             const SizedBox(width: 16),
             Text(
-              'Selected Production Apps',
+              'Featured Apps',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
-                    fontWeight: FontWeight.bold,
-                  ),
+                fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),

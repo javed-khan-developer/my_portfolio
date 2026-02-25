@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Project {
   final String name;
   final String description;
@@ -6,6 +7,7 @@ class Project {
   final List<String> technologies;
   final String? githubLink;
   final String? playStoreLink;
+  final String? appStoreLink;
   final IconData? projectIcon;
   final String role;
   final String challenges;
@@ -18,6 +20,7 @@ class Project {
     required this.technologies,
     this.githubLink,
     this.playStoreLink,
+    this.appStoreLink,
     this.projectIcon = Icons.work_outline,
     required this.role,
     required this.challenges,
