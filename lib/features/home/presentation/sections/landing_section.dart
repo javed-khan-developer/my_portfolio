@@ -16,7 +16,7 @@ class LandingSection extends StatelessWidget {
 
     return Container(
       constraints: BoxConstraints(
-        minHeight: size.height * (isMobile ? 0.1 : 0.8),
+        minHeight: size.height * (isMobile ? 0.1 : 0.4),
       ),
       width: double.infinity,
       padding: EdgeInsets.symmetric(
