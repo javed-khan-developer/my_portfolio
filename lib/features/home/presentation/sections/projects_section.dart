@@ -38,7 +38,7 @@ class ProjectsSection extends StatelessWidget {
             'Implemented offline-data caching & blink eye detection/fake GPS detection for proxy prevention.',
         playStoreLink:
             'https://play.google.com/store/apps/details?id=com.kspl.ourattendance',
-        appStoreLink: '',
+        // appStoreLink: '',
       ),
 
       Project(
@@ -161,7 +161,7 @@ class ProjectsSection extends StatelessWidget {
         solutions:
             'Implemented role-based access and real-time notification system for seamless communication.',
         playStoreLink: 'YOUR_PLAYSTORE_LINK',
-        appStoreLink: '',
+        // appStoreLink: '',
       ),
       Project(
         name: 'Inventory Management System',
