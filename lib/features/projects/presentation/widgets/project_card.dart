@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../data/models/project_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -55,10 +56,13 @@ class _ProjectCardState extends State<ProjectCard> {
                 height: isMobile ? 80 : 200,
                 width: isMobile ? size.width : 380,
                 color: Theme.of(context).primaryColor.withOpacity(0.1),
-                child: Icon(
-                  widget.project.projectIcon,
-                  size: 50,
-                  color: Theme.of(context).primaryColor,
+                child: Hero(
+                  tag: 'project-icon-${widget.project.name}',
+                  child: Icon(
+                    widget.project.projectIcon,
+                    size: 50,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
@@ -117,7 +121,12 @@ class _ProjectCardState extends State<ProjectCard> {
                         ),
                       const Spacer(),
                       TextButton(
-                        onPressed: () {}, // Navigate to detail
+                        onPressed: () {
+                          context.push(
+                            '/project-details',
+                            extra: widget.project,
+                          );
+                        },
                         child: const Row(
                           children: [
                             Text('View Details'),
