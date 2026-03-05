@@ -98,6 +98,11 @@ class TechStackSection extends StatelessWidget {
         'icon': Icons.bug_report,
         'color': Colors.deepOrange,
       },
+      {
+        'name': 'CI/CD',
+        'icon': Icons.build_circle_outlined,
+        'color': Colors.deepOrange,
+      },
     ];
 
     return Wrap(
