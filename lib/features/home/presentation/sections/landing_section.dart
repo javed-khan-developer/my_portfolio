@@ -133,9 +133,7 @@ class LandingSection extends StatelessWidget {
                                   width: 2,
                                 ),
                                 image: const DecorationImage(
-                                  image: NetworkImage(
-                                    'https://media.licdn.com/dms/image/v2/D4D03AQGjkzaHh5jMZQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1681478444095?e=1773273600&v=beta&t=EKmAxz3i9WQ_GN1uEVuB8SEEa1jVSZp6DsnwJuJgq04',
-                                  ), // Replace with actual avatar
+                                  image: AssetImage(AppAssets.profileImage),
                                   fit: BoxFit.cover,
                                 ),
                                 boxShadow: [
