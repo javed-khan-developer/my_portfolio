@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:my_portfolio/core/utils/responsive_helper.dart';
+import 'package:my_portfolio/core/utils/responsive_helper.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({super.key});
@@ -12,19 +13,22 @@ class AboutMeSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 100, vertical: isMobile?30: 60),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 24 : 100,
+        vertical: isMobile ? 30 : 60,
+      ),
       color: Theme.of(context).primaryColor.withOpacity(0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context),
-           SizedBox(height: isMobile?24: 48),
+          SizedBox(height: isMobile ? 24 : 48),
           if (isMobile)
             Column(
               children: [
                 _buildSummary(context),
-                 SizedBox(height: isMobile?24: 48),
-                _buildExperienceGrid(context),
+                SizedBox(height: isMobile ? 24 : 48),
+                _buildExperienceGrid(context, isMobile),
               ],
             )
           else
@@ -33,7 +37,10 @@ class AboutMeSection extends StatelessWidget {
               children: [
                 Expanded(flex: 3, child: _buildSummary(context)),
                 const SizedBox(width: 80),
-                Expanded(flex: 2, child: _buildExperienceGrid(context)),
+                Expanded(
+                  flex: 2,
+                  child: _buildExperienceGrid(context, isMobile),
+                ),
               ],
             ),
         ],
@@ -75,9 +82,9 @@ class AboutMeSection extends StatelessWidget {
               child: Text(
                 'Engineering Scalable Solutions with a Performance-First Mindset',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
@@ -96,22 +103,22 @@ class AboutMeSection extends StatelessWidget {
     );
   }
 
-  Widget _buildExperienceGrid(BuildContext context) {
+  Widget _buildExperienceGrid(BuildContext context, isMobile) {
     return GridView.count(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       mainAxisSpacing: 20,
       crossAxisSpacing: 20,
-      childAspectRatio: 1.5,
+      childAspectRatio: isMobile ? 1.3 : 1.5,
       children: [
-        _buildStatCard(context, '3+', 'Years Experience'),
-        _buildStatCard(context, '8+', 'Projects Delivered'),
+        _buildStatCard(context, '3+', 'Years Experience',isMobile),
+        _buildStatCard(context, '8+', 'Projects Delivered',isMobile),
       ],
     );
   }
 
-  Widget _buildStatCard(BuildContext context, String value, String label) {
+  Widget _buildStatCard(BuildContext context, String value, String label, bool isMobile) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -126,12 +133,13 @@ class AboutMeSection extends StatelessWidget {
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             value,
             style: TextStyle(
-              fontSize: 28,
+              fontSize: ResponsiveHelper.getResponsiveFontSize(context, 28),
               fontWeight: FontWeight.bold,
               color: Theme.of(context).primaryColor,
             ),
@@ -140,7 +148,10 @@ class AboutMeSection extends StatelessWidget {
           Text(
             label,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            style:  TextStyle(
+              fontSize: ResponsiveHelper.getResponsiveFontSize(context, 14),
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
