@@ -110,7 +110,7 @@ class AboutMeSection extends StatelessWidget {
       crossAxisCount: 2,
       mainAxisSpacing: 20,
       crossAxisSpacing: 20,
-      childAspectRatio: isMobile ? 1.3 : 1.5,
+      childAspectRatio: isMobile ? 1.2 : 0.7,
       children: [
         _buildStatCard(context, '3+', 'Years Experience',isMobile),
         _buildStatCard(context, '8+', 'Projects Delivered',isMobile),
@@ -139,7 +139,7 @@ class AboutMeSection extends StatelessWidget {
           Text(
             value,
             style: TextStyle(
-              fontSize: ResponsiveHelper.getResponsiveFontSize(context, 28),
+              fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
               fontWeight: FontWeight.bold,
               color: Theme.of(context).primaryColor,
             ),
@@ -149,7 +149,7 @@ class AboutMeSection extends StatelessWidget {
             label,
             textAlign: TextAlign.center,
             style:  TextStyle(
-              fontSize: ResponsiveHelper.getResponsiveFontSize(context, 14),
+              fontSize: ResponsiveHelper.getResponsiveFontSize(context, 16),
               fontWeight: FontWeight.w500,
             ),
           ),

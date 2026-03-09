@@ -3,13 +3,14 @@ import '../../../../data/models/project_model.dart';
 import '../../../projects/presentation/widgets/project_card.dart';
 import 'package:my_portfolio/core/utils/responsive_helper.dart';
 
+
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 800;
+    final width = MediaQuery.of(context).size.width;
+    final isMobile = width < 800;
 
     final List<Project> projects = [
       Project(
@@ -33,18 +34,18 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-            'Ensuring accurate attendance sync in low-network environments & Prevent Proxy Attendance .',
+        'Ensuring accurate attendance sync in low-network environments & Prevent Proxy Attendance .',
         solutions:
-            'Implemented offline-data caching & blink eye detection/fake GPS detection for proxy prevention.',
+        'Implemented offline-data caching & blink eye detection/fake GPS detection for proxy prevention.',
         playStoreLink:
-            'https://play.google.com/store/apps/details?id=com.kspl.ourattendance',
+        'https://play.google.com/store/apps/details?id=com.kspl.ourattendance',
         // appStoreLink: '',
       ),
 
       Project(
         name: 'Entry IQ',
         description:
-            'A kiosk-based Visitor Management System for secure office entry with real-time host notifications.',
+        'A kiosk-based Visitor Management System for secure office entry with real-time host notifications.',
         features: [
           'Visitor Check-in/Check-out',
           'QR Code Generation',
@@ -60,18 +61,18 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Engineer',
         challenges:
-            'Handling hardware integration with thermal printers and scanners on kiosk devices',
+        'Handling hardware integration with thermal printers and scanners on kiosk devices',
         solutions:
-            'Built a modular hardware abstraction layer using platform channels for stable device communication.',
+        'Built a modular hardware abstraction layer using platform channels for stable device communication.',
         playStoreLink:
-            'https://play.google.com/store/apps/details?id=com.kspl.vmsKiosk1',
+        'https://play.google.com/store/apps/details?id=com.kspl.vmsKiosk1',
         appStoreLink: 'https://apps.apple.com/us/app/entryiq/id6476648198',
       ),
 
       Project(
         name: 'HealthyU',
         description:
-            'A scalable e-commerce application with product management, cart system, and secure checkout.',
+        'A scalable e-commerce application with product management, cart system, and secure checkout.',
         features: [
           'Product Listing & Filters',
           'Cart & Wishlist',
@@ -81,16 +82,15 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-            'Managing complex cart state and ensuring smooth checkout flow.',
+        'Managing complex cart state and ensuring smooth checkout flow.',
         solutions:
-            'Implemented centralized state management with optimized rebuild control and secure token handling.',
-        playStoreLink: 'YOUR_PLAYSTORE_LINK',
+        'Implemented centralized state management with optimized rebuild control and secure token handling.',
       ),
 
       Project(
         name: 'KoMark',
         description:
-            'A marketing automation mobile app for managing campaigns, posting photos and videos.',
+        'A marketing automation mobile app for managing campaigns, posting photos and videos.',
         features: [
           'Push Notifications',
           'Submit Photos/Videos Post',
@@ -100,19 +100,17 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Mobile Application Developer',
         challenges:
-            'Handling high-volume push notifications and deep link routing.',
+        'Handling high-volume push notifications and deep link routing.',
         solutions:
-            'Integrated FCM with proper background handlers and implemented dynamic route parsing.',
+        'Integrated FCM with proper background handlers and implemented dynamic route parsing.',
         playStoreLink:
-            'https://play.google.com/store/apps/details?id=com.kspl.mark_app',
-        appStoreLink: '',
-
+        'https://play.google.com/store/apps/details?id=com.kspl.mark_app',
       ),
 
       Project(
         name: 'My Nearby Masjid',
         description:
-            'An audio streaming application providing live and scheduled Azan notifications.',
+        'An audio streaming application providing live and scheduled Azan notifications.',
         features: [
           'Live Audio Streaming',
           'Background Playback',
@@ -130,17 +128,18 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-            'Ensuring uninterrupted background streaming across Android OEM devices.',
+        'Ensuring uninterrupted background streaming across Android OEM devices.',
         solutions:
-            'Optimized foreground service handling and implemented battery optimization handling logic.',
+        'Optimized foreground service handling and implemented battery optimization handling logic.',
         playStoreLink:
-            'https://play.google.com/store/apps/details?id=com.maqjaconsultancy.mymosque',
-        appStoreLink: 'https://apps.apple.com/us/app/my-nearby-masjid/id6758878080',
+        'https://play.google.com/store/apps/details?id=com.maqjaconsultancy.mymosque',
+        appStoreLink:
+        'https://apps.apple.com/us/app/my-nearby-masjid/id6758878080',
       ),
       Project(
         name: 'Society Management System',
         description:
-            'A residential society management application for managing residents, building/flats, maintenance billing, online payments.',
+        'A residential society management application for managing residents, building/flats, maintenance billing, online payments.',
         features: [
           'Resident Management',
           'Maintenance Billing & Payment Tracking',
@@ -157,25 +156,25 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-            'Managing real-time communication between residents, security, and admin users.',
+        'Managing real-time communication between residents, security, and admin users.',
         solutions:
-            'Implemented role-based access and real-time notification system for seamless communication.',
-        playStoreLink: 'YOUR_PLAYSTORE_LINK',
+        'Implemented role-based access and real-time notification system for seamless communication.',
+        // playStoreLink: 'YOUR_PLAYSTORE_LINK',
         // appStoreLink: '',
       ),
       Project(
         name: 'Inventory Management System',
         description:
-            'A mobile inventory tracking solution for managing stock levels, product movement, and reporting.',
+        'A mobile inventory tracking solution for managing stock levels, product movement, and reporting.',
         features: ['Stock Management', 'Product Tracking', 'Inventory Reports'],
         technologies: ['Flutter', 'REST API', 'Firebase'],
 
         role: 'Flutter Developer',
         challenges:
-            'Handling large inventory datasets without UI performance degradation.',
+        'Handling large inventory datasets without UI performance degradation.',
         solutions:
-            'Optimized image using cache image and implemented pagination for efficient data loading.',
-        githubLink: '',
+        'Optimized image using cache image and implemented pagination for efficient data loading.',
+        // githubLink: '',
       ),
       Project(
         name: 'Notes App',
@@ -195,12 +194,14 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-            'Maintaining consistency between local cached data and language translation.',
+        'Maintaining consistency between local cached data and language translation.',
         solutions:
-            'Implemented background sync strategy with conflict resolution for offline data handling and language translation.',
+        'Implemented background sync strategy with conflict resolution for offline data handling and language translation.',
         githubLink: 'https://github.com/javed-khan-developer/cloud_note',
       ),
     ];
+
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -213,11 +214,38 @@ class ProjectsSection extends StatelessWidget {
         children: [
           _buildHeader(context),
           SizedBox(height: isMobile ? 32 : 64),
-          Wrap(
-            spacing: 32,
-            runSpacing: 40,
-            alignment: WrapAlignment.center,
-            children: projects.map((p) => ProjectCard(project: p)).toList(),
+
+          LayoutBuilder(
+            builder: (context, constraints) {
+              int crossAxisCount;
+
+              if (constraints.maxWidth < 650) {
+                crossAxisCount = 1;
+              } else if (constraints.maxWidth < 1000) {
+                crossAxisCount = 2;
+              } else if (constraints.maxWidth < 1400) {
+                crossAxisCount = 3;
+              } else {
+                crossAxisCount = 4;
+              }
+
+              return GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: projects.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 32,
+                  mainAxisSpacing: 40,
+
+                  // Controls card height
+                  childAspectRatio: 0.80,
+                ),
+                itemBuilder: (context, index) {
+                  return ProjectCard(project: projects[index]);
+                },
+              );
+            },
           ),
         ],
       ),
@@ -244,7 +272,8 @@ class ProjectsSection extends StatelessWidget {
             Text(
               'Featured Apps',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontSize: ResponsiveHelper.getResponsiveFontSize(context, 32),
+                fontSize:
+                ResponsiveHelper.getResponsiveFontSize(context, 32),
                 fontWeight: FontWeight.bold,
               ),
             ),

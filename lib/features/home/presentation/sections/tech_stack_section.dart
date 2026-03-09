@@ -144,6 +144,7 @@ class TechStackSection extends StatelessWidget {
         ],
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             tech['icon'] as IconData,
@@ -153,6 +154,7 @@ class TechStackSection extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             tech['name'] as String,
+            textAlign: TextAlign.center,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
