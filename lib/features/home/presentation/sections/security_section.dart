@@ -199,7 +199,7 @@ class SecuritySection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Expanded(
+          Flexible(
             child: Text(
               desc,
               maxLines: 4,
