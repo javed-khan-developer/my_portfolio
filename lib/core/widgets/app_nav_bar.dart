@@ -1,31 +1,69 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../main.dart';
+import '../theme/app_theme.dart';
 
 class AppNavBar extends StatelessWidget implements PreferredSizeWidget {
   final Function(String) onSectionSelect;
+  final String? activeSection;
 
-  const AppNavBar({super.key, required this.onSectionSelect});
+  const AppNavBar({
+    super.key,
+    required this.onSectionSelect,
+    this.activeSection,
+  });
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final isDark = themeProvider.themeMode == ThemeMode.dark;
-
-    final isMobile = MediaQuery.of(context).size.width < 800;
+    final isMobile = MediaQuery.of(context).size.width < 900;
 
     return AppBar(
       backgroundColor: Theme.of(
         context,
-      ).scaffoldBackgroundColor.withOpacity(0.8),
+      ).scaffoldBackgroundColor.withOpacity(0.85),
       elevation: 0,
       centerTitle: false,
-      leading: isMobile ? null : null, // AppBar handles drawer automatically
-      title: Text(
-        'My Portfolio',
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-          letterSpacing: 2,
+      title: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => onSectionSelect('Home'),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    'J',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 12),
+              Text(
+                'Javed AppWorks',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       actions: isMobile
@@ -33,84 +71,66 @@ class AppNavBar extends StatelessWidget implements PreferredSizeWidget {
               IconButton(
                 icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
                 onPressed: () => themeProvider.toggleTheme(),
+                tooltip: 'Toggle Theme',
               ),
-              const SizedBox(width: 16),
+              SizedBox(width: 8),
             ]
           : [
-              _NavBarItem(label: 'Home', onTap: () => onSectionSelect('Home')),
-              _NavBarItem(
-                label: 'About',
-                onTap: () => onSectionSelect('About'),
+              _buildNavItem('Home', () => onSectionSelect('Home')),
+              _buildNavItem('About', () => onSectionSelect('About')),
+              _buildNavItem('Projects', () => onSectionSelect('Projects')),
+              _buildNavItem(
+                'Case Studies',
+                () => onSectionSelect('Case Studies'),
               ),
-              _NavBarItem(
-                label: 'Projects',
-                onTap: () => onSectionSelect('Projects'),
+              _buildNavItem('Security', () => onSectionSelect('Security')),
+              _buildNavItem('Contact', () => onSectionSelect('Contact')),
+              SizedBox(width: 16),
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).dividerColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: IconButton(
+                  icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                  onPressed: () => themeProvider.toggleTheme(),
+                  tooltip: 'Toggle Theme',
+                ),
               ),
-              _NavBarItem(
-                label: 'Case Studies',
-                onTap: () => onSectionSelect('Case Studies'),
-              ),
-              _NavBarItem(
-                label: 'Security',
-                onTap: () => onSectionSelect('Security'),
-              ),
-              _NavBarItem(
-                label: 'Contact',
-                onTap: () => onSectionSelect('Contact'),
-              ),
-              const SizedBox(width: 8),
-              IconButton(
-                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-                onPressed: () => themeProvider.toggleTheme(),
-              ),
-              const SizedBox(width: 16),
+              SizedBox(width: 16),
             ],
     );
   }
 
-  @override
-  Size get preferredSize => const Size.fromHeight(70);
-}
-
-class _NavBarItem extends StatefulWidget {
-  final String label;
-  final VoidCallback onTap;
-
-  const _NavBarItem({required this.label, required this.onTap});
-
-  @override
-  State<_NavBarItem> createState() => _NavBarItemState();
-}
-
-class _NavBarItemState extends State<_NavBarItem> {
-  bool isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildNavItem(String label, VoidCallback onTap) {
     return MouseRegion(
-      onEnter: (_) => setState(() => isHovered = true),
-      onExit: (_) => setState(() => isHovered = false),
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: widget.onTap,
+        onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                widget.label,
+                label,
                 style: TextStyle(
-                  fontWeight: isHovered ? FontWeight.bold : FontWeight.normal,
-                  color: isHovered ? Theme.of(context).primaryColor : null,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  letterSpacing: 0.5,
                 ),
               ),
+              SizedBox(height: 4),
               AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration: Duration(milliseconds: 200),
                 height: 2,
-                width: isHovered ? 20 : 0,
-                color: Theme.of(context).primaryColor,
-                margin: const EdgeInsets.only(top: 4),
+                width: 0,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                  ),
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
             ],
           ),
@@ -118,4 +138,7 @@ class _NavBarItemState extends State<_NavBarItem> {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(70);
 }

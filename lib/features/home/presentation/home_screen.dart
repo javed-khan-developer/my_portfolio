@@ -14,6 +14,7 @@ import 'sections/resume_section.dart';
 import 'sections/contact_section.dart';
 import '../../../core/widgets/app_footer.dart';
 import '../../../core/utils/app_assets.dart';
+import '../../../core/theme/app_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (key != null && key.currentContext != null) {
       Scrollable.ensureVisible(
         key.currentContext!,
-        duration: const Duration(seconds: 1),
+        duration: const Duration(milliseconds: 1200),
         curve: Curves.easeInOutQuart,
       );
     }
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 800;
+    final isMobile = MediaQuery.of(context).size.width < 900;
 
     return ResponsiveLayout(
       child: Scaffold(
@@ -57,25 +58,29 @@ class _HomeScreenState extends State<HomeScreen> {
         drawer: isMobile ? _buildMobileDrawer() : null,
         body: SingleChildScrollView(
           controller: _scrollController,
-          child: Column(
-            children: [
-              LandingSection(
-                key: _sectionKeys['Home'],
-                onViewProjects: () => _scrollToSection('Projects'),
-              ),
-              AboutMeSection(key: _sectionKeys['About']),
-              TechStackSection(key: _sectionKeys['Tech']),
-              ProjectsSection(key: _sectionKeys['Projects']),
-              CaseStudySection(key: _sectionKeys['Case Studies']),
-              // const ProductionImpactSection(),
-              SecuritySection(key: _sectionKeys['Security']),
-              const PerformanceSection(),
-              const ArchitectureSection(),
-              const FailureHandlingSection(),
-              const ResumeSection(),
-              ContactSection(key: _sectionKeys['Contact']),
-              const AppFooter(),
-            ],
+          physics: BouncingScrollPhysics(), // Smooth bouncing scroll for web
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minWidth: double.infinity),
+            child: Column(
+              children: [
+                LandingSection(
+                  key: _sectionKeys['Home'],
+                  onViewProjects: () => _scrollToSection('Projects'),
+                ),
+                AboutMeSection(key: _sectionKeys['About']),
+                TechStackSection(key: _sectionKeys['Tech']),
+                ProjectsSection(key: _sectionKeys['Projects']),
+                CaseStudySection(key: _sectionKeys['Case Studies']),
+                // const ProductionImpactSection(),
+                SecuritySection(key: _sectionKeys['Security']),
+                const PerformanceSection(),
+                const ArchitectureSection(),
+                const FailureHandlingSection(),
+                const ResumeSection(),
+                ContactSection(key: _sectionKeys['Contact']),
+                const AppFooter(),
+              ],
+            ),
           ),
         ),
       ),
@@ -84,34 +89,48 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildMobileDrawer() {
     return Drawer(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(AppTheme.radiusLG),
+          bottomRight: Radius.circular(AppTheme.radiusLG),
+        ),
+      ),
       child: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            child: Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 36,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage(AppAssets.profileImage),
-                    ),
+          SizedBox(height: 60),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundColor: AppTheme.primaryColor,
+                  child: CircleAvatar(
+                    radius: 38,
+                    backgroundImage: AssetImage(AppAssets.profileImage),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Mohammad Javed Khan',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(height: 12),
+                Text(
+                  'Mohammad Javed Khan',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
+          Divider(height: 1),
           ..._sectionKeys.keys.map(
             (section) => ListTile(
-              title: Text(section),
+              contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+              minLeadingWidth: 0,
+              title: Text(
+                section,
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+              ),
               onTap: () {
                 Navigator.pop(context);
                 _scrollToSection(section);
