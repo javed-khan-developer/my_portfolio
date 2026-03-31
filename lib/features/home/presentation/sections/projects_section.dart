@@ -240,7 +240,11 @@ class ProjectsSection extends StatelessWidget {
                     crossAxisCount: crossAxisCount,
                     crossAxisSpacing: isMobile ? 12 : 20,
                     mainAxisSpacing: isMobile ? 20 : 28,
-                    childAspectRatio: 0.72, // More compact ratio
+                    childAspectRatio:
+                        0.70, // More compact for consistent sizing
+                    mainAxisExtent: isMobile
+                        ? 280.0
+                        : 340.0, // Fixed height for uniformity
                   ),
                   itemBuilder: (context, index) {
                     return ProjectCard(project: projects[index]);

@@ -14,16 +14,22 @@ class LandingSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isMobile = size.width < 900;
-    final padding = ResponsiveHelper.getResponsivePadding(
-      context,
-      horizontal: 24,
-      vertical: isMobile ? 40 : 80,
-    );
+    final isTablet = size.width >= 900 && size.width < 1200;
+
+    // Dynamic padding based on screen size - more compact
+    final horizontalPadding = isMobile ? 24.0 : (isTablet ? 40.0 : 80.0);
+    final verticalPadding = isMobile ? 32.0 : (isTablet ? 48.0 : 64.0);
+
+    // Reduced minimum height for less empty space
+    final minHeight = isMobile ? size.height * 0.6 : size.height * 0.7;
 
     return Container(
       width: double.infinity,
-      constraints: BoxConstraints(minHeight: size.height * 0.8),
-      padding: padding,
+      constraints: BoxConstraints(minHeight: minHeight),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: verticalPadding,
+      ),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -38,16 +44,16 @@ class LandingSection extends StatelessWidget {
         children: [
           // Subtle background decoration
           Positioned(
-                top: -100,
-                right: -100,
+                top: -80,
+                right: -80,
                 child: Container(
-                  width: 400,
-                  height: 400,
+                  width: isMobile ? 250 : 350,
+                  height: isMobile ? 250 : 350,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        Theme.of(context).primaryColor.withOpacity(0.08),
+                        Theme.of(context).primaryColor.withOpacity(0.06),
                         Theme.of(context).primaryColor.withOpacity(0),
                       ],
                     ),
@@ -60,16 +66,16 @@ class LandingSection extends StatelessWidget {
 
           // Second decorative element
           Positioned(
-                bottom: -50,
-                left: -50,
+                bottom: -40,
+                left: -40,
                 child: Container(
-                  width: 300,
-                  height: 300,
+                  width: isMobile ? 200 : 280,
+                  height: isMobile ? 200 : 280,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppTheme.secondaryColor.withOpacity(0.06),
+                        AppTheme.secondaryColor.withOpacity(0.05),
                         AppTheme.secondaryColor.withOpacity(0),
                       ],
                     ),
@@ -82,7 +88,7 @@ class LandingSection extends StatelessWidget {
 
           Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 1200),
+              constraints: BoxConstraints(maxWidth: 1100),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -98,13 +104,13 @@ class LandingSection extends StatelessWidget {
                                 fontSize:
                                     ResponsiveHelper.getResponsiveFontSize(
                                       context,
-                                      isMobile ? 16 : 18,
-                                      minSize: 14,
+                                      isMobile ? 15 : 17,
+                                      minSize: 13,
                                     ),
                                 fontWeight: FontWeight.w600,
                                 color: AppTheme.primaryColor,
-                                letterSpacing: 3,
-                                height: 1.5,
+                                letterSpacing: 2.5,
+                                height: 1.4,
                               ),
                             )
                             .animate()
@@ -114,7 +120,7 @@ class LandingSection extends StatelessWidget {
                               end: 0,
                               curve: Curves.easeOutCubic,
                             ),
-                        SizedBox(height: isMobile ? 12 : 16),
+                        SizedBox(height: isMobile ? 10 : 14),
                         Text(
                               'Mohammad Javed Khan\n(Flutter Developer)',
                               style: isMobile
@@ -125,8 +131,21 @@ class LandingSection extends StatelessWidget {
                                       fontSize:
                                           ResponsiveHelper.getResponsiveFontSize(
                                             context,
-                                            28,
-                                            maxSize: 36,
+                                            26,
+                                            maxSize: 32,
+                                          ),
+                                      fontWeight: FontWeight.w800,
+                                    )
+                                  : isTablet
+                                  ? Theme.of(
+                                      context,
+                                    ).textTheme.displayMedium?.copyWith(
+                                      height: 1.15,
+                                      fontSize:
+                                          ResponsiveHelper.getResponsiveFontSize(
+                                            context,
+                                            42,
+                                            maxSize: 50,
                                           ),
                                       fontWeight: FontWeight.w800,
                                     )
@@ -137,8 +156,8 @@ class LandingSection extends StatelessWidget {
                                       fontSize:
                                           ResponsiveHelper.getResponsiveFontSize(
                                             context,
-                                            52,
-                                            maxSize: 64,
+                                            48,
+                                            maxSize: 56,
                                           ),
                                       fontWeight: FontWeight.w800,
                                     ),
@@ -150,18 +169,18 @@ class LandingSection extends StatelessWidget {
                               end: 0,
                               curve: Curves.easeOutCubic,
                             ),
-                        SizedBox(height: isMobile ? 16 : 24),
+                        SizedBox(height: isMobile ? 14 : 20),
                         Text(
                               'Specializing in designing, building, and optimizing scalable production-grade Android and iOS applications with Flutter.',
-                              style: Theme.of(context).textTheme.bodyLarge
+                              style: Theme.of(context).textTheme.bodyMedium
                                   ?.copyWith(
                                     fontSize:
                                         ResponsiveHelper.getResponsiveFontSize(
                                           context,
-                                          isMobile ? 16 : 18,
-                                          minSize: 14,
+                                          isMobile ? 14 : 16,
+                                          minSize: 13,
                                         ),
-                                    height: 1.6,
+                                    height: 1.5,
                                   ),
                             )
                             .animate()
@@ -171,18 +190,18 @@ class LandingSection extends StatelessWidget {
                               end: 0,
                               curve: Curves.easeOutCubic,
                             ),
-                        SizedBox(height: isMobile ? 32 : 48),
+                        SizedBox(height: isMobile ? 24 : 36),
                         Wrap(
-                              spacing: 16,
-                              runSpacing: 16,
+                              spacing: 14,
+                              runSpacing: 14,
                               children: [
                                 ElevatedButton(
                                   onPressed: onViewProjects,
                                   child: const Text('View Projects'),
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal: 32,
-                                      vertical: 16,
+                                      horizontal: 28,
+                                      vertical: 14,
                                     ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(
@@ -198,8 +217,8 @@ class LandingSection extends StatelessWidget {
                                   child: const Text('Download Resume'),
                                   style: OutlinedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal: 32,
-                                      vertical: 16,
+                                      horizontal: 28,
+                                      vertical: 14,
                                     ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(
@@ -221,14 +240,14 @@ class LandingSection extends StatelessWidget {
                     ),
                   ),
                   if (!isMobile) ...[
-                    SizedBox(width: 60),
+                    SizedBox(width: isTablet ? 40 : 60),
                     Expanded(
                       flex: 2,
                       child: Center(
                         child:
                             Container(
-                                  width: 450,
-                                  height: 450,
+                                  width: isTablet ? 320 : 420,
+                                  height: isTablet ? 320 : 420,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -242,14 +261,14 @@ class LandingSection extends StatelessWidget {
                                     boxShadow: [
                                       BoxShadow(
                                         color: AppTheme.primaryColor
-                                            .withOpacity(0.2),
-                                        blurRadius: 80,
-                                        spreadRadius: 30,
+                                            .withOpacity(0.15),
+                                        blurRadius: isTablet ? 60 : 80,
+                                        spreadRadius: isTablet ? 20 : 30,
                                       ),
                                       BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),
-                                        blurRadius: 40,
-                                        offset: Offset(0, 20),
+                                        color: Colors.black.withOpacity(0.08),
+                                        blurRadius: isTablet ? 30 : 40,
+                                        offset: Offset(0, isTablet ? 15 : 20),
                                       ),
                                     ],
                                   ),
