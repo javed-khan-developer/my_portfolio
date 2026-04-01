@@ -100,7 +100,7 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Mobile Application Developer',
         challenges:
-            'Handling high-volume push notifications and deep link routing.',
+            'Handling deep link routing.',
         solutions:
             'Integrated FCM with proper background handlers and implemented dynamic route parsing.',
         playStoreLink:
@@ -128,7 +128,7 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-            'Ensuring uninterrupted background streaming across Android OEM devices.',
+            'Ensuring uninterrupted background streaming across Android devices.',
         solutions:
             'Optimized foreground service handling and implemented battery optimization handling logic.',
         playStoreLink:
@@ -156,7 +156,7 @@ class ProjectsSection extends StatelessWidget {
 
         role: 'Flutter Developer',
         challenges:
-            'Managing real-time communication between residents, security, and admin users.',
+            'Managing real-time communication between residents, watchman, and admin users.',
         solutions:
             'Implemented role-based access and real-time notification system for seamless communication.',
         // playStoreLink: 'YOUR_PLAYSTORE_LINK',
@@ -176,29 +176,29 @@ class ProjectsSection extends StatelessWidget {
             'Optimized image using cache image and implemented pagination for efficient data loading.',
         // githubLink: '',
       ),
-      Project(
-        name: 'Notes App',
-        description: 'A note management application with offline support.',
-        features: [
-          'Create & Manage Notes',
-          'Share Notes',
-          'Language Translation',
-        ],
-        technologies: [
-          'Flutter',
-          'Cloud Firestore',
-          'Getx',
-          'Firebase',
-          'Local Storage',
-        ],
-
-        role: 'Flutter Developer',
-        challenges:
-            'Maintaining consistency between local cached data and language translation.',
-        solutions:
-            'Implemented background sync strategy with conflict resolution for offline data handling and language translation.',
-        githubLink: 'https://github.com/javed-khan-developer/cloud_note',
-      ),
+      // Project(
+      //   name: 'Notes App',
+      //   description: 'A note management application with offline support.',
+      //   features: [
+      //     'Create & Manage Notes',
+      //     'Share Notes',
+      //     'Language Translation',
+      //   ],
+      //   technologies: [
+      //     'Flutter',
+      //     'Cloud Firestore',
+      //     'Getx',
+      //     'Firebase',
+      //     'Local Storage',
+      //   ],
+      //
+      //   role: 'Flutter Developer',
+      //   challenges:
+      //       'Maintaining consistency between local cached data and language translation.',
+      //   solutions:
+      //       'Implemented background sync strategy with conflict resolution for offline data handling and language translation.',
+      //   githubLink: 'https://github.com/javed-khan-developer/cloud_note',
+      // ),
     ];
 
     return Container(
